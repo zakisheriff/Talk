@@ -6,6 +6,10 @@ faiss-cpu
 pymupdf
 pytesseract
 python-multipart
+easyocr
+rapidocr-onnxruntime
+transformers
+torch
 numpy
 requests
 # FaceFusion & WAN dependencies

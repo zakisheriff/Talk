@@ -1,13 +1,13 @@
 const API_URL = "http://localhost:8000";
 
-export const chatStream = async (message, onChunk) => {
+export const chatStream = async (message, history, onChunk) => {
     try {
         const response = await fetch(`${API_URL}/chat`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ message }),
+            body: JSON.stringify({ message, history }),
         });
 
         if (!response.ok) {

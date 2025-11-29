@@ -29,9 +29,10 @@ class VectorDB:
         self.metadata.extend(metadatas)
         self.save()
 
-    def search(self, query_vector: list[float], k: int = 5) -> list[dict]:
+    def search(self, query_vector: list[float], k: int = 5, threshold: float = 1.5) -> list[dict]:
         """
         Searches for the k nearest neighbors.
+        Returns only results with distance < threshold.
         """
         if self.index.ntotal == 0:
             return []
@@ -41,8 +42,11 @@ class VectorDB:
         
         results = []
         for i, idx in enumerate(indices[0]):
+            dist = distances[0][i]
             if idx != -1 and idx < len(self.metadata):
-                results.append(self.metadata[idx])
+                # Only include if distance is low enough (relevant)
+                if dist < threshold:
+                    results.append(self.metadata[idx])
                 
         return results
 

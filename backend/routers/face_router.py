@@ -19,6 +19,14 @@ async def swap_faces(source: UploadFile = File(...), target: UploadFile = File(.
     
     source_path = f"uploads/{source_id}_{source.filename}"
     target_path = f"uploads/{target_id}_{target.filename}"
+    
+    # CRITICAL FIX: Save the uploaded files to disk!
+    with open(source_path, "wb") as buffer:
+        shutil.copyfileobj(source.file, buffer)
+        
+    with open(target_path, "wb") as buffer:
+        shutil.copyfileobj(target.file, buffer)
+        
     try:
         # Determine if target is video or image
         target_ext = target.filename.split('.')[-1].lower()
