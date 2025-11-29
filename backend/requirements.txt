@@ -1,0 +1,21 @@
+fastapi
+uvicorn
+llama-cpp-python
+sentence-transformers
+faiss-cpu
+pymupdf
+pytesseract
+python-multipart
+numpy
+requests
+# FaceFusion & WAN dependencies
+onnxruntime
+opencv-python
+pillow
+insightface
+basicsr
+gfpgan
+realesrgan
+torch
+torchvision
+torchaudio
